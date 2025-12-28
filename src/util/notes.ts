@@ -1,4 +1,5 @@
 import { ChordType, ChordT } from '../types';
+import { doesArrayContainSubset } from './misc';
 
 export const notesAsSharps = 'A A# B C C# D D# E F F# G G# '.repeat(3).split(' ');
 export const notesAsFlats = 'A Bb B C Db D Eb E F Gb G Ab '.repeat(3).split(' ');
@@ -69,7 +70,48 @@ export const chordTypes: {
   'min13': { structure: [0, 4, 7, 11, 14, 17, 21], key: 'minor', duplicate: true },
 };
 
-export const getNotesInScale = (
+export const scaleTypes: { [index: string]: number[] } = {
+  'major': [0, 2, 4, 5, 7, 9, 11],
+  'minor': [0, 2, 3, 5, 7, 8, 10],
+  'myxolydian': [0, 2, 4, 5, 7, 9, 10],
+  'locrian': [0, 2, 3, 5, 7, 8, 10],
+  'dorian': [0, 2, 3, 5, 7, 9, 10],
+  'phrygian': [0, 1, 3, 5, 7, 8, 10],
+  'lydian': [0, 2, 4, 6, 7, 9, 11],
+  'ionian': [0, 2, 4, 5, 7, 9, 11],
+  'mixolydian': [0, 2, 4, 5, 7, 9, 10],
+  'aeolian': [0, 2, 3, 5, 7, 8, 10],
+  'harmonic minor': [0, 2, 3, 5, 7, 8, 11],
+};
+
+const getAllScalesForAllNotes = () => {
+  const notes = Array.from(new Set(notesAsFlats.concat(notesAsSharps)));
+  const scales = [];
+  for (const note of notes) {
+    for (const scale of Object.keys(scaleTypes)) {
+      scales.push({ name: `${note} ${scale}`, notes: getNotesInScale(note, scale) });
+    }
+  }
+  return scales;
+};
+
+export const getAllMatchingScalesForChord = (rootNote: string, chordType: string) => {
+  const chordNotes = getNotesFromChordType(rootNote, chordType);
+  const allScales = getAllScalesForAllNotes();
+  const matchingScales = allScales.filter((scale: { name: string, notes: string[] }) => {
+    return doesArrayContainSubset(scale.notes, chordNotes);
+  });
+  return matchingScales;
+};
+
+const getNotesInScale = (rootNote: string, scaleType: string): string[] => {
+  const scaleIntervals = scaleTypes[scaleType];
+  const rootAsSharp = changeAccidential(rootNote, 'sharps');
+  const rootIndex = notesAsSharps.indexOf(rootAsSharp);
+  return scaleIntervals.map((interval: number) => notesAsSharps[rootIndex + interval]);
+};
+
+export const getNotesInChordType = (
   rootNote: string,
   chordType: string,
 ): { notes: string[]; scale: 'flats' | 'sharps' } => {
@@ -148,7 +190,7 @@ export const getNotesFromChordType = (rootNote: string, chordType: string): stri
 
     getNotesFromChordType('C', 'maj7') -> ['C', 'E', 'G', 'B']
   */
-  const { notes } = getNotesInScale(rootNote, chordType);
+  const { notes } = getNotesInChordType(rootNote, chordType);
   const rootNoteIdx: number = notes?.indexOf(rootNote);
   const chordStructure = chordTypes[chordType].structure;
 

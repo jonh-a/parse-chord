@@ -4,11 +4,12 @@ import { constructChord } from '../chord';
 import { 
   changeAccidential,
   chordTypes,
-  getNotesInScale,
+  getNotesInChordType,
   getNotesFromChordType,
   handleInversion,
   seperateChordNameAndBassNote,
   getRootNoteAndChordTypeFromName,
+  getAllMatchingScalesForChord,
 } from '../util';
 
 export const getChordByName = (chordInput: ChordT | string): Chord => {
@@ -17,7 +18,7 @@ export const getChordByName = (chordInput: ChordT | string): Chord => {
 
   const { chordName, bassNote } = seperateChordNameAndBassNote(chord.name);
   const { rootNote, chordType } = getRootNoteAndChordTypeFromName(chordName);
-  const { notes, scale } = getNotesInScale(rootNote, chordType);
+  const { notes, scale } = getNotesInChordType(rootNote, chordType);
   const transformedBassNote = changeAccidential(bassNote, scale);
 
   if (!Object.keys(chordTypes).includes(chordType)) return new Chord({ notes: [], name: '' });

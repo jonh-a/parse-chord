@@ -7,6 +7,7 @@ import {
   doesArrayContainSubset,
   handleBassNoteIfNotRootNote,
   areArraysEqual,
+  getAllMatchingScalesForChord,
 } from './util';
 
 export class Chord {
@@ -86,6 +87,10 @@ export class Chord {
           bassNote,
         });
       });
+  }
+
+  public scales() {
+    return getAllMatchingScalesForChord(this.rootNote, this.chordType);
   }
 }
 

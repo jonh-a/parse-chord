@@ -8,12 +8,13 @@ import {
   generateAllPossibleChordsFromRootNote,
   generateAllPossiblePermutationsFromNotesArray,
   getNotesFromChordType,
-  getNotesInScale,
+  getNotesInChordType,
   removeDuplicateAndNullNotes,
   transposeRootNote,
   handleBassNoteIfNotRootNote,
   handleInversion,
   getAllChordTypes,
+  getAllMatchingScalesForChord,
 } from './notes';
 import {
   seperateChordNameAndBassNote,
@@ -30,7 +31,7 @@ export {
   generateAllPossibleChordsFromRootNote,
   generateAllPossiblePermutationsFromNotesArray,
   getNotesFromChordType,
-  getNotesInScale,
+  getNotesInChordType,
   removeDuplicateAndNullNotes,
   transposeRootNote,
   handleBassNoteIfNotRootNote,
@@ -39,4 +40,5 @@ export {
   handleInversion,
   getAllChordTypes,
   areArraysEqual,
+  getAllMatchingScalesForChord,
 };
