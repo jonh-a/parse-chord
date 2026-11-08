@@ -4,7 +4,7 @@ export interface ChordT {
   inversion?: number | null
   rootNote?: string
   bassNote?: string | null
-  chordType?: string;
+  quality?: string;
 };
 
 export interface ChordType { 

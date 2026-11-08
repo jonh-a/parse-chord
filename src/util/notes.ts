@@ -71,7 +71,7 @@ export const chordTypes: {
 
 export const getNotesInScale = (
   rootNote: string,
-  chordType: string,
+  quality: string,
 ): { notes: string[]; scale: 'flats' | 'sharps' } => {
   /*
     We should respect typical music theory rules and not provide inconsistent
@@ -87,7 +87,7 @@ export const getNotesInScale = (
   const minorSharpKeys = ['E', 'B', 'F#', 'C#', 'G#', 'D#', 'A#'];
   const minorFlatKeys = ['D', 'G', 'C', 'F', 'Bb', 'Eb', 'Ab'];
 
-  const chordKey = chordTypes[chordType]?.key;
+  const chordKey = chordTypes[quality]?.key;
 
   if (sharps.includes(rootNote)) {
     return { notes: notesAsSharps, scale: 'sharps' };
@@ -142,15 +142,15 @@ export const handleInversion = (notes: string[], inversion: number): string[] =>
   return [...notesAfterInversion, ...notesBeforeInversion];
 };
 
-export const getNotesFromChordType = (rootNote: string, chordType: string): string[] => {
+export const getNotesFromChordType = (rootNote: string, quality: string): string[] => {
   /*
     Get a list of notes given a root note and chord type.
 
     getNotesFromChordType('C', 'maj7') -> ['C', 'E', 'G', 'B']
   */
-  const { notes } = getNotesInScale(rootNote, chordType);
+  const { notes } = getNotesInScale(rootNote, quality);
   const rootNoteIdx: number = notes?.indexOf(rootNote);
-  const chordStructure = chordTypes[chordType].structure;
+  const chordStructure = chordTypes[quality].structure;
 
   return chordStructure.map((n: number) => {
     return notes[rootNoteIdx + n];
@@ -170,10 +170,10 @@ export const transposeRootNote = (rootNote: string, semitones: number): string =
 export const generateAllPossibleChordsFromRootNote = (rootNote: string): ChordT[] => {
   return Object.keys(chordTypes)
     .filter((chordKey: string) => !chordTypes[chordKey].duplicate)
-    .map((chordType: string) => ({
-      name: `${rootNote}${chordType}`,
-      notes: getNotesFromChordType(rootNote, chordType),
-      chordType,
+    .map((quality: string) => ({
+      name: `${rootNote}${quality}`,
+      notes: getNotesFromChordType(rootNote, quality),
+      quality,
       rootNote,
     }));
 };

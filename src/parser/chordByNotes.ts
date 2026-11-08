@@ -21,7 +21,7 @@ export const getChordByNotes = (notes: string[]): {
   let allPossibleChordTypes = generateAllPossiblePermutationsFromNotesArray(normalizedNotes);
 
   let possibleMatches = allPossibleChordTypes
-    .filter((chordType: ChordT) => doesArrayContainSubset(chordType.notes, normalizedNotes));
+    .filter((quality: ChordT) => doesArrayContainSubset(quality.notes, normalizedNotes));
 
   let exactMatches = possibleMatches
     .filter((chord: ChordT) => (
@@ -48,7 +48,7 @@ export const getChordByNotes = (notes: string[]): {
     allPossibleChordTypes = generateAllPossiblePermutationsFromNotesArray(chordNotes);
 
     possibleMatches = allPossibleChordTypes
-      .filter((chordType: ChordT) => doesArrayContainSubset(chordType.notes, chordNotes))
+      .filter((quality: ChordT) => doesArrayContainSubset(quality.notes, chordNotes))
       .map((chord: ChordT) => ({ ...chord, bassNote }));
 
     exactMatches = possibleMatches

@@ -20,9 +20,9 @@ test('test chord name and bass note parsing', () => {
 });
 
 test('test root note and chord type parsing', () => {
-  expect(getRootNoteAndChordTypeFromName('Cmaj7')).toEqual({ rootNote: 'C', chordType: 'maj7' });
-  expect(getRootNoteAndChordTypeFromName('D#7')).toEqual({ rootNote: 'D#', chordType: '7' });
-  expect(getRootNoteAndChordTypeFromName('Eb6/9')).toEqual({ rootNote: 'Eb', chordType: '6/9' });
+  expect(getRootNoteAndChordTypeFromName('Cmaj7')).toEqual({ rootNote: 'C', quality: 'maj7' });
+  expect(getRootNoteAndChordTypeFromName('D#7')).toEqual({ rootNote: 'D#', quality: '7' });
+  expect(getRootNoteAndChordTypeFromName('Eb6/9')).toEqual({ rootNote: 'Eb', quality: '6/9' });
 });
 
 test('test note retrieval', () => {

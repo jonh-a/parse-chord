@@ -23,7 +23,7 @@ Chord {
   notes: [ 'G', 'C', 'E', 'G', 'B' ],
   rootNote: 'C',
   bassNote: 'G',
-  chordType: 'maj7',
+  quality: 'maj7',
   inversion: null
 }
 */
@@ -35,7 +35,7 @@ Chord {
   notes: [ 'D#', 'G#', 'A#', 'C#' ],
   rootNote: 'D#',
   bassNote: null,
-  chordType: '7sus4',
+  quality: '7sus4',
   inversion: null
 }
 */
@@ -47,7 +47,7 @@ Chord {
   notes: [ 'G', 'G', 'B', 'C', 'E' ],
   rootNote: 'C',
   bassNote: 'G',
-  chordType: 'maj7',
+  quality: 'maj7',
   inversion: 2
 }
 */
@@ -70,7 +70,7 @@ Chord {
   notes: [ 'C', 'E', 'G', 'B' ],
   rootNote: 'C',
   bassNote: null,
-  chordType: 'maj7',
+  quality: 'maj7',
   inversion: null
 }
 */
@@ -82,7 +82,7 @@ Chord {
   notes: [ 'G', 'D#', 'A#', 'F' ],
   rootNote: 'D#',
   bassNote: 'G',
-  chordType: 'add9',
+  quality: 'add9',
   inversion: null
 }
 */
@@ -109,7 +109,7 @@ Chord {
   notes: [ 'E', 'G', 'B' ],
   rootNote: 'E',
   bassNote: null,
-  chordType: 'm',
+  quality: 'm',
   inversion: null
 }
 */
@@ -121,7 +121,7 @@ Chord {
   notes: [ 'C', 'E', 'G', 'D' ],
   rootNote: 'C',
   bassNote: null,
-  chordType: 'add9',
+  quality: 'add9',
   inversion: null
 }
 */
@@ -133,7 +133,7 @@ Chord {
   notes: [ 'G', 'B', 'D', 'A' ],
   rootNote: 'G',
   bassNote: null,
-  chordType: 'add9',
+  quality: 'add9',
   inversion: null
 }
 */

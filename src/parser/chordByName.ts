@@ -16,12 +16,12 @@ export const getChordByName = (chordInput: ChordT | string): Chord => {
   if (!chord.name || chord.name === '') return new Chord({ notes: [], name: '' });
 
   const { chordName, bassNote } = seperateChordNameAndBassNote(chord.name);
-  const { rootNote, chordType } = getRootNoteAndChordTypeFromName(chordName);
-  const { notes, scale } = getNotesInScale(rootNote, chordType);
+  const { rootNote, quality } = getRootNoteAndChordTypeFromName(chordName);
+  const { notes, scale } = getNotesInScale(rootNote, quality);
   const transformedBassNote = changeAccidential(bassNote, scale);
 
-  if (!Object.keys(chordTypes).includes(chordType)) return new Chord({ notes: [], name: '' });
-  let chordNotes = getNotesFromChordType(rootNote, chordType);
+  if (!Object.keys(chordTypes).includes(quality)) return new Chord({ notes: [], name: '' });
+  let chordNotes = getNotesFromChordType(rootNote, quality);
 
   if (chord.inversion) chordNotes = handleInversion(chordNotes, chord.inversion);
   if (transformedBassNote && notes.indexOf(transformedBassNote) > -1) {
@@ -34,6 +34,6 @@ export const getChordByName = (chordInput: ChordT | string): Chord => {
     bassNote: transformedBassNote ?? null,
     inversion: chord.inversion ?? null,
     rootNote,
-    chordType,
+    quality,
   });
 };

@@ -8,7 +8,7 @@ test('test basic string input', () => {
       name: 'Cmaj7',
       bassNote: null,
       inversion: null,
-      chordType: 'maj7',
+      quality: 'maj7',
       rootNote: 'C',
     }),
   );
@@ -19,7 +19,7 @@ test('test basic string input', () => {
       name: 'Db7',
       bassNote: null,
       inversion: null,
-      chordType: '7',
+      quality: '7',
       rootNote: 'Db',
     }),
   );
@@ -33,7 +33,7 @@ test('test major triads', () => {
       bassNote: null,
       inversion: null,
       rootNote: 'C',
-      chordType: '',
+      quality: '',
     }),
   );
   expect(getChordByName({ name: 'D#m7' })).toStrictEqual(
@@ -43,7 +43,7 @@ test('test major triads', () => {
       bassNote: null,
       inversion: null,
       rootNote: 'D#',
-      chordType: 'm7',
+      quality: 'm7',
     }),
   );
   expect(getChordByName({ name: 'Db7' })).toStrictEqual(
@@ -53,7 +53,7 @@ test('test major triads', () => {
       bassNote: null,
       inversion: null,
       rootNote: 'Db',
-      chordType: '7',
+      quality: '7',
     }),
   );
   expect(getChordByName({ name: 'Cm7' })).toStrictEqual(
@@ -63,7 +63,7 @@ test('test major triads', () => {
       bassNote: null,
       inversion: null,
       rootNote: 'C',
-      chordType: 'm7',
+      quality: 'm7',
     }),
   );
   expect(getChordByName({ name: 'C6/9' })).toStrictEqual(
@@ -73,7 +73,7 @@ test('test major triads', () => {
       bassNote: null,
       inversion: null,
       rootNote: 'C',
-      chordType: '6/9',
+      quality: '6/9',
     }),
   );
 });
@@ -85,7 +85,7 @@ test('test triads with bass notes', () => {
       name: 'C/G',
       bassNote: 'G',
       inversion: null,
-      chordType: '',
+      quality: '',
       rootNote: 'C',
     }),
   );
@@ -96,7 +96,7 @@ test('test triads with bass notes', () => {
       bassNote: 'F#',
       inversion: null,
       rootNote: 'D#',
-      chordType: 'm7',
+      quality: 'm7',
     }),
   );
   expect(getChordByName({ name: 'Cm7/G' })).toStrictEqual(
@@ -105,7 +105,7 @@ test('test triads with bass notes', () => {
       name: 'Cm7/G',
       bassNote: 'G',
       inversion: null,
-      chordType: 'm7',
+      quality: 'm7',
       rootNote: 'C',
     }),
   );
@@ -116,7 +116,7 @@ test('test triads with bass notes', () => {
       bassNote: 'G',
       inversion: null,
       rootNote: 'C',
-      chordType: '6/9',
+      quality: '6/9',
     }),
   );
   expect(getChordByName({ name: 'Db7/Ab' })).toStrictEqual(
@@ -126,7 +126,7 @@ test('test triads with bass notes', () => {
       bassNote: 'Ab',
       inversion: null,
       rootNote: 'Db',
-      chordType: '7',
+      quality: '7',
     }),
   );
 });
@@ -139,7 +139,7 @@ test('test inversions', () => {
       bassNote: null,
       inversion: 1,
       rootNote: 'C',
-      chordType: '',
+      quality: '',
     }),
   );
   expect(getChordByName({ name: 'C/G', inversion: 1 })).toStrictEqual(
@@ -148,7 +148,7 @@ test('test inversions', () => {
       name: 'C/G',
       bassNote: 'G',
       inversion: 1,
-      chordType: '',
+      quality: '',
       rootNote: 'C',
     }),
   );
@@ -159,7 +159,7 @@ test('test inversions', () => {
       bassNote: null,
       inversion: 2,
       rootNote: 'C',
-      chordType: '',
+      quality: '',
     }),
   );
   expect(getChordByName({ name: 'C/G', inversion: 2 })).toStrictEqual(
@@ -169,7 +169,7 @@ test('test inversions', () => {
       bassNote: 'G',
       inversion: 2,
       rootNote: 'C',
-      chordType: '',
+      quality: '',
     }),
   );
 });
@@ -179,7 +179,7 @@ test('test parsing name from notes', () => {
     new Chord({
       notes: ['C', 'E', 'G'],
       name: 'C',
-      chordType: '',
+      quality: '',
       rootNote: 'C',
       inversion: null,
       bassNote: null,
@@ -189,7 +189,7 @@ test('test parsing name from notes', () => {
     new Chord({
       notes: ['G', 'C', 'E'],
       name: 'C/G',
-      chordType: '',
+      quality: '',
       rootNote: 'C',
       inversion: null,
       bassNote: 'G',
@@ -199,7 +199,7 @@ test('test parsing name from notes', () => {
     new Chord({
       notes: [ 'G', 'D', 'F#', 'A'],
       name: 'D/G',
-      chordType: '',
+      quality: '',
       rootNote: 'D',
       inversion: null,
       bassNote: 'G',
@@ -209,7 +209,7 @@ test('test parsing name from notes', () => {
     new Chord({
       notes: ['G', 'C', 'E'],
       name: 'C/G',
-      chordType: '',
+      quality: '',
       rootNote: 'C',
       inversion: null,
       bassNote: 'G',
@@ -219,7 +219,7 @@ test('test parsing name from notes', () => {
     new Chord({
       notes: ['G', 'C', 'E', 'B'],
       name: 'Cmaj7/G',
-      chordType: 'maj7',
+      quality: 'maj7',
       rootNote: 'C',
       inversion: null,
       bassNote: 'G',
@@ -229,7 +229,7 @@ test('test parsing name from notes', () => {
     new Chord({
       notes: ['G', 'D#', 'A#', 'F'],
       name: 'D#add9/G',
-      chordType: 'add9',
+      quality: 'add9',
       rootNote: 'D#',
       inversion: null,
       bassNote: 'G',
@@ -239,7 +239,7 @@ test('test parsing name from notes', () => {
     new Chord({
       notes: ['A#', 'D', 'F#', 'A'],
       name: 'D/A#',
-      chordType: '',
+      quality: '',
       rootNote: 'D',
       inversion: null,
       bassNote: 'A#',
@@ -249,7 +249,7 @@ test('test parsing name from notes', () => {
     new Chord({
       notes: ['E', 'A#', 'C#', 'F'],
       name: 'A#m/E',
-      chordType: 'm',
+      quality: 'm',
       rootNote: 'A#',
       inversion: null,
       bassNote: 'E',
@@ -266,7 +266,7 @@ test('test guitar chord parsing', () => {
     new Chord({
       notes: ['F', 'C', 'G', 'A#'],
       name: 'C7sus4/F',
-      chordType: '7sus4',
+      quality: '7sus4',
       rootNote: 'C',
       inversion: null,
       bassNote: 'F',
@@ -279,7 +279,7 @@ test('test guitar chord parsing', () => {
     new Chord({
       notes: ['G', 'B', 'D'],
       name: 'G',
-      chordType: '',
+      quality: '',
       rootNote: 'G',
       inversion: null,
       bassNote: null,
@@ -289,7 +289,7 @@ test('test guitar chord parsing', () => {
     new Chord({
       notes: ['G', 'D', 'F#', 'A', 'C'],
       name: 'D7/G',
-      chordType: '7',
+      quality: '7',
       rootNote: 'D',
       inversion: null,
       bassNote: 'G',
@@ -300,7 +300,7 @@ test('test guitar chord parsing', () => {
     new Chord({
       notes: ['F', 'E', 'G', 'B'],
       name: 'Em/F',
-      chordType: 'm',
+      quality: 'm',
       rootNote: 'E',
       inversion: null,
       bassNote: 'F',
@@ -311,7 +311,7 @@ test('test guitar chord parsing', () => {
     new Chord({
       notes: ['D', 'A'],
       name: 'D5',
-      chordType: '5',
+      quality: '5',
       rootNote: 'D',
       inversion: null,
       bassNote: null,

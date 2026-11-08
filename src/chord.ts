@@ -14,7 +14,7 @@ export class Chord {
   notes: string[];
   rootNote: string;
   bassNote: string | null;
-  chordType: string;
+  quality: string;
   inversion: number | null;
   private opts: ChordT;
 
@@ -23,7 +23,7 @@ export class Chord {
     this.notes = opts.notes;
     this.rootNote = opts.rootNote;
     this.bassNote = opts?.bassNote || null;
-    this.chordType = opts?.chordType;
+    this.quality = opts?.quality;
     this.inversion = opts?.inversion || null;
     Object.defineProperty(this, 'opts', {
       value: opts,
@@ -38,7 +38,7 @@ export class Chord {
       ...this.opts,
       inversion,
       notes: handleInversion(
-        getNotesFromChordType(this.rootNote, this.chordType),
+        getNotesFromChordType(this.rootNote, this.quality),
         inversion,
       ),
     });
@@ -48,12 +48,12 @@ export class Chord {
     const transposedRoot = transposeRootNote(this.rootNote, semitones);
     const transposedBass = this.bassNote ? transposeRootNote(this.bassNote, semitones) : null;
     const transposedNotes = handleInversion(
-      getNotesFromChordType(transposedRoot, this.chordType),
+      getNotesFromChordType(transposedRoot, this.quality),
       this.inversion,
     );
     if (transposedBass) transposedNotes.unshift(transposedBass);
 
-    const transposedName = `${transposedRoot}${this.chordType}`
+    const transposedName = `${transposedRoot}${this.quality}`
       + `${transposedBass ? '/' + transposedBass : ''}`;
 
     return new Chord({
@@ -66,7 +66,7 @@ export class Chord {
   }
 
   public extensions() {
-    const notes = getNotesFromChordType(this.rootNote, this.chordType);
+    const notes = getNotesFromChordType(this.rootNote, this.quality);
 
     return generateAllPossibleChordsFromRootNote(this.rootNote)
       .filter((chord: Chord) => doesArrayContainSubset(chord.notes, notes) 
@@ -95,7 +95,7 @@ export const constructChord = (chord: ChordT): Chord => {
     notes: chord.notes,
     rootNote: chord.rootNote,
     bassNote: chord?.bassNote ?? null,
-    chordType: chord.chordType,
+    quality: chord.quality,
     inversion: chord?.inversion ?? null,
   });
 };

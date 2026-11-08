@@ -26,7 +26,7 @@ export const seperateChordNameAndBassNote = (rawChordName: string): {
 };
 
 export const getRootNoteAndChordTypeFromName = (chordName: string): {
-  chordType: string,
+  quality: string,
   rootNote: string
 } => {
   /* 
@@ -38,8 +38,8 @@ export const getRootNoteAndChordTypeFromName = (chordName: string): {
   if (chordName.includes(' ')) splitIdx = chordName.indexOf(' ');
   if (chordName?.[1] === '#' || chordName?.[1] === 'b') splitIdx = 1;
 
-  const chordType = chordName?.substring(splitIdx + 1)?.trim();
+  const quality = chordName?.substring(splitIdx + 1)?.trim();
   const rootNote = chordName?.substring(0, splitIdx + 1)?.trim();
 
-  return { chordType, rootNote };
+  return { quality, rootNote };
 };
